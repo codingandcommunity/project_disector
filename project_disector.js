@@ -15,7 +15,7 @@ function errorlog(err, idk){
 var repo_link = readline.question("Enter the link to the repo\n");
 
 console.log(repo_link);
-repo_link = "https://github.com/codingandcommunity/test-project.git";
+repo_link = "https://github.com/codingandcommunity/disector_test_project.git";
 
 var repo_path = readline.question("Where would you like this to be stored (type h or here for wrking dir)\n");
 if(repo_path == 'here' || repo_path == 'h'){
@@ -77,5 +77,12 @@ function gitstuff(repo_path){
   var clone_path = repo_path + "\\" + repo_link.substr(repo_link.lastIndexOf("/")+1,(repo_link.length));
   clone_path = clone_path.substr(0,clone_path.length-4);
   console.log("clone path is " + clone_path);
-  git.cwd(clone_path).log((err, log) => console.log(log));
+  var log_output;
+  git.cwd(clone_path).log((err, log) => processLogOutput(log));
+}
+
+function processLogOutput(log){
+  console.log(log);
+
+  
 }
